@@ -13,7 +13,7 @@ exports.sendMessage = async(req,res)=>{
 exports.GetsingleMessage =  async (req,res)=>{
     try{
     const ContactMessage = await Message.findById(req.params.id)
-    res.status(200).send(ContactMessage)
+    res.status(200).json({message:"Message recieved succesfuly",ContactMessage})
     }catch{
         res.status(404).send("message not found")
     }
