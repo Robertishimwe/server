@@ -22,7 +22,7 @@ const MessageSchema = new Schema({
         min:5,
         max:150
     },
-    timeStamp:{
+    createDate:{
         type: 'date',
         default: Date.now()
     }
