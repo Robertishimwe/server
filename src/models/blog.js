@@ -9,19 +9,18 @@ const ArticleSchema = new Schema({
         max: 60
 
     },
-    body:{
+    articleBody:{
         type: 'string',
         required: true,
-        min:50,
         max: 3000
 
     },
-    Image:{
+    ImageLink:{
         type: 'string',
-        default: []
+        
     },
     likes: {
-        type: 'Integer',
+        type: 'number',
         default: 0  
     },
     Comments:{
