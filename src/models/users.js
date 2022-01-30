@@ -30,6 +30,10 @@ const UserSchema = new Schema({
     CreatedDate:{
         type: 'date',
         default: Date.now()
+    },
+    UpdatedDate:{
+        type: 'date',
+        default: Date.now()
     }
 });
 
