@@ -1,6 +1,7 @@
 const Article = require("../models/blog")
 const {articleValidation} = require("../middleware/blogValidation")
 const User = require("../models/users")
+const { required } = require("@hapi/joi")
 
 
 
@@ -102,4 +103,33 @@ exports.updateArticle = async (req,res)=>{
     
 
    
+}
+
+exports.comments = async (req,res)=>{
+
+const articles = await Article.findById(req.params.id)
+
+  try {
+      if(!articles){
+          res.send({message:"Article not found"})
+      }
+      else{
+        let userId = req.user.id
+        const loggedUser = await User.findById(userId);
+        const userName = loggedUser.userName;
+
+
+       const newComment = {USERNAME:userName, COMMENT:req.body.comments};
+       const oldComments = articles.Comments;
+       oldComments.push(newComment)
+
+
+        Object.assign(articles, oldComments)
+          await articles.save()
+          res.status(200).json(articles)
+      }
+  } catch (error) {
+      res.send(error)
+  }
+
 }

@@ -23,10 +23,8 @@ const ArticleSchema = new Schema({
         type: 'number',
         default: 0  
     },
-    Comments:{
-        type: 'Array',
-        default: []
-    },
+    Comments: [],
+    
     createDate:{
         type: 'date',
         default: Date.now()
