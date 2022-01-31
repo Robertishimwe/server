@@ -8,5 +8,6 @@ router.get("/articles/:id", blogController.getSingleArticle)
 router.get("/articles", blogController.getArticleListe)
 router.delete("/articles/:id",verify, blogController.deleteArticle)
 router.patch("/articles/:id",verify, blogController.updateArticle)
+router.patch("/articles/comments/:id",verify,blogController.comments)
 
 module.exports = router;
