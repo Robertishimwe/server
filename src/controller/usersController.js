@@ -1,4 +1,5 @@
 const User = require('../models/users')
+const jwt = require("jsonwebtoken")
 const bcrypt = require('bcrypt')
 const {regiserValidation, loginValidation} = require("../middleware/usersValidation")
 
@@ -60,7 +61,17 @@ exports.createUser = async (req,res)=>{
     try {
      const userPassword = user.userPassword;
     if(await bcrypt.compare(req.body.userPassword,userPassword)){
-    res.send("successfuly loggedin")
+        const token = jwt.sign({id:user._id}, process.env.TOKEN_SECRET)
+
+
+        //admin validation
+      
+      console.log(req.user)
+
+        //admin validation
+
+        res.set("authantication", token).send("logged")
+    // res.send("successfuly loggedin")
     }else{
         res.send("not allowed")
     }

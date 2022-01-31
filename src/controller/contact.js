@@ -1,5 +1,9 @@
 const Message = require("../models/contact")
 const {contactFormValidation} = require("../middleware/contactMiddleware")
+const verify = require("../middleware/authenticator")
+const User = require("../models/users")
+
+
 
 exports.sendMessage = async(req,res)=>{
 
@@ -27,9 +31,18 @@ exports.GetsingleMessage =  async (req,res)=>{
     }
 }
 exports.GetAllMessage = async (req,res)=>{
+
+    //verify if users is admin
+     let userId = req.user.id
+     const loggedUser = await User.findById(userId);
+     const userRole = loggedUser.userRole;
+
+     if(userRole == "user") return res.status(401).send("you are not allowed to access this page")
+
+
     try{
     const ContactMessage = await Message.find()
-    res.status(200).send(ContactMessage)
+    res.status(200).send({ContactMessage})
     }catch{
         res.status(404).send("message not found")
     }
