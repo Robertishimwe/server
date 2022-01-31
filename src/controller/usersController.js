@@ -70,7 +70,7 @@ exports.createUser = async (req,res)=>{
 
         //admin validation
 
-        res.set("authantication", token).send("logged")
+        res.set("authantication", token).send("logged in")
     // res.send("successfuly loggedin")
     }else{
         res.send("not allowed")
@@ -83,6 +83,13 @@ exports.createUser = async (req,res)=>{
 }
 
  exports.findAllUsers = async (req,res)=>{
+
+    let userId = req.user.id
+    const loggedUser = await User.findById(userId);
+    const userRole = loggedUser.userRole;
+    if(userRole == "user") return res.status(401).send("you are not allowed to access this page")
+
+
     const user = await User.find()
     res.send(user)
  }
