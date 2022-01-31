@@ -1,9 +1,20 @@
 const User = require('../models/users')
+const jwt = require("jsonwebtoken")
 const bcrypt = require('bcrypt')
-const LoginSchema = require("../middleware/usersValidation")
+const {regiserValidation, loginValidation} = require("../middleware/usersValidation")
 
+
+
+
+// Create user Controller
 exports.createUser = async (req,res)=>{
 
+
+    const {error} = regiserValidation(req.body)
+    if(error){
+        res.status(400).send(error.details[0].message)
+    }
+    else{
     const user = new User({
         "userName":req.body.userName,
         "userEmail":req.body.userEmail,
@@ -25,8 +36,21 @@ exports.createUser = async (req,res)=>{
 
 
 }
+}
 
-exports.login = async (req,res)=>{
+
+
+
+
+
+
+ // login controller
+    
+ exports.login = async (req,res)=>{
+ 
+    const {error} = loginValidation(req.body)
+    if(error) return res.status(400).send(error.details[0].message)
+   
     const email = req.body.userEmail;
     const user = await User.findOne({userEmail:email});
     // res.send(user)
@@ -35,9 +59,19 @@ exports.login = async (req,res)=>{
     }
     
     try {
-     const userPassword = user[0].userPassword;
+     const userPassword = user.userPassword;
     if(await bcrypt.compare(req.body.userPassword,userPassword)){
-    res.send("successfuly loggedin")
+        const token = jwt.sign({id:user._id}, process.env.TOKEN_SECRET)
+
+
+        //admin validation
+      
+      console.log(req.user)
+
+        //admin validation
+
+        res.set("authantication", token).send("logged")
+    // res.send("successfuly loggedin")
     }else{
         res.send("not allowed")
     }
@@ -48,8 +82,7 @@ exports.login = async (req,res)=>{
 
 }
 
-
-exports.findAllUsers = async (req,res)=>{
+ exports.findAllUsers = async (req,res)=>{
     const user = await User.find()
     res.send(user)
-}
+ }

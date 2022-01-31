@@ -1,9 +1,17 @@
 const Article = require("../models/blog")
+const {articleValidation} = require("../middleware/blogValidation")
 
 
 // Create article
 
 exports.createArticle = async (req,res)=>{
+
+
+    const {error} = articleValidation(req.body)
+    if(error){
+        res.status(400).send(error.details[0].message)
+    }
+    else{
     const articles = new Article({
         "title":req.body.title,
         "articleBody":req.body.articleBody,
@@ -14,7 +22,7 @@ exports.createArticle = async (req,res)=>{
     res.status(200).send(articles)
 }
 
-
+}
 // retrive single article
 exports.getSingleArticle =  async (req,res)=>{
     const articles = await Article.findById(req.params.id)
@@ -68,7 +76,7 @@ exports.updateArticle = async (req,res)=>{
     } catch (error) {
         res.send(error)
     }
-
+    
 
    
 }
