@@ -23,6 +23,12 @@ exports.sendMessage = async(req,res)=>{
 
 }}
 exports.GetsingleMessage =  async (req,res)=>{
+      //verify if users is admin
+     let userId = req.user.id
+     const loggedUser = await User.findById(userId);
+     const userRole = loggedUser.userRole;
+
+     if(userRole == "user") return res.status(401).send("you are not allowed to access this page")
     try{
     const ContactMessage = await Message.findById(req.params.id)
     res.status(200).json({message:"Message recieved succesfuly",ContactMessage})
@@ -48,6 +54,12 @@ exports.GetAllMessage = async (req,res)=>{
     }
 }
 exports.DeleteMessage = async (req,res)=>{
+      //verify if users is admin
+      let userId = req.user.id
+      const loggedUser = await User.findById(userId);
+      const userRole = loggedUser.userRole;
+      if(userRole == "user") return res.status(401).send("you are not allowed to access this page")
+      
     try{
     const ContactMessage = Message.findById(req.params.id)
     await ContactMessage.remove()

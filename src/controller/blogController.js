@@ -1,10 +1,18 @@
 const Article = require("../models/blog")
 const {articleValidation} = require("../middleware/blogValidation")
+const User = require("../models/users")
+
 
 
 // Create article
 
 exports.createArticle = async (req,res)=>{
+
+    //verify if users is admin
+    let userId = req.user.id
+    const loggedUser = await User.findById(userId);
+    const userRole = loggedUser.userRole;
+    if(userRole == "user") return res.status(401).send("you are not allowed to access this page")
 
 
     const {error} = articleValidation(req.body)
@@ -41,6 +49,15 @@ exports.getArticleListe =  async (req,res)=>{
 //Delete article
 
 exports.deleteArticle = async (req,res)=>{
+
+
+  //verify if users is admin
+  let userId = req.user.id
+  const loggedUser = await User.findById(userId);
+  const userRole = loggedUser.userRole;
+  if(userRole == "user") return res.status(401).send("you are not allowed to access this page")
+
+
     const articles = await Article.findById(req.params.id)
     try {
         if(!articles){
@@ -62,6 +79,12 @@ exports.deleteArticle = async (req,res)=>{
 //update article
 
 exports.updateArticle = async (req,res)=>{
+
+      //verify if users is admin
+      let userId = req.user.id
+      const loggedUser = await User.findById(userId);
+      const userRole = loggedUser.userRole;
+      if(userRole == "user") return res.status(401).send("you are not allowed to access this page")
 
     const articles = await Article.findById(req.params.id)
     try {
