@@ -1,6 +1,14 @@
 const Message = require("../models/contact")
+const {contactFormValidation} = require("../middleware/contactMiddleware")
 
 exports.sendMessage = async(req,res)=>{
+
+    const {error} = contactFormValidation(req.body)
+    if(error){
+        res.status(400).send(error.details[0].message)
+    }
+    else{
+
     const ContactMessage = new Message({
         "name":req.body.name,
         "email":req.body.email,
@@ -9,7 +17,7 @@ exports.sendMessage = async(req,res)=>{
     await ContactMessage.save()
     res.status(200).send(ContactMessage)
 
-}
+}}
 exports.GetsingleMessage =  async (req,res)=>{
     try{
     const ContactMessage = await Message.findById(req.params.id)
