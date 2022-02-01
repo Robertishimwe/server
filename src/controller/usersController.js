@@ -1,13 +1,18 @@
-const User = require('../models/users')
-const jwt = require("jsonwebtoken")
-const bcrypt = require('bcrypt')
-const {regiserValidation, loginValidation} = require("../middleware/usersValidation")
+// const User = require('../models/users')
+// const jwt = require("jsonwebtoken")
+// const bcrypt = require('bcrypt')
+// const {regiserValidation, loginValidation} = require("../middleware/usersValidation")
+// import { from } from 'formidable/src/parsers/Dummy'
+import User from "../models/users"
+import jwt  from "jsonwebtoken";
+import bcrypt from "bcrypt"
+import {regiserValidation, loginValidation} from "../middleware/usersValidation";
 
 
-
+class UserController{
 
 // Create user Controller
-exports.createUser = async (req,res)=>{
+ static createUser = async (req,res)=>{
 
 
     const {error} = regiserValidation(req.body)
@@ -46,7 +51,7 @@ exports.createUser = async (req,res)=>{
 
  // login controller
     
- exports.login = async (req,res)=>{
+ static login = async (req,res)=>{
  
     const {error} = loginValidation(req.body)
     if(error) return res.status(400).send(error.details[0].message)
@@ -64,13 +69,14 @@ exports.createUser = async (req,res)=>{
         const token = jwt.sign({id:user._id}, process.env.TOKEN_SECRET)
 
 
-        //admin validation
-      
-      console.log(req.user)
+    
+   const userRole = user.userRole;
+   if(userRole == "admin") return res.set("authantication", token).send("admin panel")
+   if(userRole == "user") return res.set("authantication", token).send("logged in as users")
 
         //admin validation
 
-        res.set("authantication", token).send("logged in")
+        // res.set("authantication", token).send(userId)
     // res.send("successfuly loggedin")
     }else{
         res.send("not allowed")
@@ -82,7 +88,7 @@ exports.createUser = async (req,res)=>{
 
 }
 
- exports.findAllUsers = async (req,res)=>{
+ static findAllUsers = async (req,res)=>{
 
     let userId = req.user.id
     const loggedUser = await User.findById(userId);
@@ -93,3 +99,5 @@ exports.createUser = async (req,res)=>{
     const user = await User.find()
     res.send(user)
  }
+}
+export default UserController;

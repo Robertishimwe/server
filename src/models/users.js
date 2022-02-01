@@ -1,4 +1,5 @@
-const mongoose = require("mongoose")
+// const mongoose = require("mongoose")
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt')
 
@@ -14,7 +15,7 @@ const UserSchema = new Schema({
         type: 'string',
         required: true,
         min:50,
-        max: 3000
+        max: 300
 
     },
     userPassword:{

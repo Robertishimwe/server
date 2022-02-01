@@ -1,6 +1,4 @@
-//validation
-const Joi = require('@hapi/joi');
-const joi = require('@hapi/joi');
+import joi from '@hapi/joi';
 
 
 //registration validation

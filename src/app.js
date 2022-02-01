@@ -1,8 +1,21 @@
-const express = require("express")
-const mongoose = require("mongoose")
-const dotenv = require("dotenv").config();
+// const express = require("express")
+// const mongoose = require("mongoose")
+// const dotenv = require("dotenv").config();
+// const app = express()
+// const bcrypt = require('bcrypt')
+
+
+//Import using ES6
+import dotenv from 'dotenv';
+import express from 'express';
+import mongoose from 'mongoose';
+dotenv.config();
 const app = express()
-const bcrypt = require('bcrypt')
+
+
+
+
+
 
 // Import Routes
 const contact_route = require("./routes/contact");
