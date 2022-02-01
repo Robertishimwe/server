@@ -1,14 +1,18 @@
-const express = require("express");
-const router = express.Router();
-const verify = require("../middleware/authenticator")
-const blogController = require("../controller/blogController")
+// const express = require("express");
+// const verify = require("../middleware/authenticator")
+// const blogController = require("../controller/blogController")
 
-router.post("/articles/create",verify, blogController.createArticle)
-router.get("/articles/:id", blogController.getSingleArticle)
-router.get("/articles", blogController.getArticleListe)
-router.delete("/articles/:id",verify, blogController.deleteArticle)
-router.patch("/articles/:id",verify, blogController.updateArticle)
-router.patch("/articles/comments/:id",verify,blogController.comments)
-router.patch("/articles/like/:id",verify,blogController.likes)
+import express from "express";
+import verify from "../middleware/authenticator"
+import BlogController from "../controller/blogController"
+const router = express.Router();
+
+router.post("/articles/create",verify, BlogController.createArticle)
+router.get("/articles/:id", BlogController.getSingleArticle)
+router.get("/articles", BlogController.getArticleListe)
+router.delete("/articles/:id",verify, BlogController.deleteArticle)
+router.patch("/articles/:id",verify, BlogController.updateArticle)
+router.patch("/articles/comments/:id",verify,BlogController.comments)
+router.patch("/articles/like/:id",verify,BlogController.likes)
 
 module.exports = router;

@@ -1,5 +1,6 @@
 //validation
-const joi = require('@hapi/joi');
+// const joi = require('@hapi/joi');
+import joi from '@hapi/joi';
 
 
 //contact form validation

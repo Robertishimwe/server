@@ -1,11 +1,14 @@
-const Message = require("../models/contact")
-const {contactFormValidation} = require("../middleware/contactMiddleware")
-const verify = require("../middleware/authenticator")
-const User = require("../models/users")
+// const Message = require("../models/contact")
+// const {contactFormValidation} = require("../middleware/contactMiddleware")
+// const verify = require("../middleware/authenticator")
+// const User = require("../models/users")
+import Message from "../models/contact"
+import {contactFormValidation} from "../middleware/contactMiddleware"
+import User from "../models/users" 
 
 
-
-exports.sendMessage = async(req,res)=>{
+class ContactController{
+ static sendMessage = async(req,res)=>{
 
     const {error} = contactFormValidation(req.body)
     if(error){
@@ -22,7 +25,7 @@ exports.sendMessage = async(req,res)=>{
     res.status(200).send(ContactMessage)
 
 }}
-exports.GetsingleMessage =  async (req,res)=>{
+static GetsingleMessage =  async (req,res)=>{
       //verify if users is admin
      let userId = req.user.id
      const loggedUser = await User.findById(userId);
@@ -36,7 +39,7 @@ exports.GetsingleMessage =  async (req,res)=>{
         res.status(404).send("message not found")
     }
 }
-exports.GetAllMessage = async (req,res)=>{
+static GetAllMessage = async (req,res)=>{
 
     //verify if users is admin
      let userId = req.user.id
@@ -53,7 +56,7 @@ exports.GetAllMessage = async (req,res)=>{
         res.status(404).send("message not found")
     }
 }
-exports.DeleteMessage = async (req,res)=>{
+static DeleteMessage = async (req,res)=>{
       //verify if users is admin
       let userId = req.user.id
       const loggedUser = await User.findById(userId);
@@ -68,3 +71,5 @@ exports.DeleteMessage = async (req,res)=>{
         res.status(404).send("message not found")
     }
 }
+}
+export default ContactController
