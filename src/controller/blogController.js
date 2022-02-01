@@ -133,3 +133,37 @@ const articles = await Article.findById(req.params.id)
   }
 
 }
+
+exports.likes = async (req,res)=>{
+
+    const articles = await Article.findById(req.params.id)
+    
+    
+      try {
+          if(!articles){
+              res.send({message:"Article not found"})
+          }
+          else{
+            let userId = req.user.id
+            let oldLike = articles.likes
+            for(let i=0; i<=oldLike.length;i++){
+                if(userId == oldLike[i]) return res.send("Already liked")
+            }
+
+
+            oldLike.push(userId)
+            Object.assign(articles, oldLike)
+              await articles.save()
+              res.status(200).json(articles)
+          }
+      } catch (error) {
+          res.send(error)
+      }
+    
+    }
+
+
+
+
+
+

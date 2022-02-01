@@ -19,10 +19,8 @@ const ArticleSchema = new Schema({
         type: 'string',
         
     },
-    likes: {
-        type: 'number',
-        default: 0  
-    },
+    likes: [],
+    
     Comments: [],
     
     createDate:{
