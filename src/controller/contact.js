@@ -2,6 +2,7 @@
 // const {contactFormValidation} = require("../middleware/contactMiddleware")
 // const verify = require("../middleware/authenticator")
 // const User = require("../models/users")
+
 import Message from "../models/contact"
 import {contactFormValidation} from "../middleware/contactMiddleware"
 import User from "../models/users" 
@@ -17,9 +18,9 @@ class ContactController{
     else{
 
     const ContactMessage = new Message({
-        "name":req.body.name,
-        "email":req.body.email,
-        "message":req.body.message
+        "name":req.body.name.trim(),
+        "email":req.body.email.trim(),
+        "message":req.body.message.trim()
     })
     await ContactMessage.save()
     res.status(200).send(ContactMessage)

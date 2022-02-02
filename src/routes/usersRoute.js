@@ -2,7 +2,6 @@
 // const verify = require("../middleware/authenticator")
 // const express = require("express");
 
-
 import express from "express";
 import UserController from "../controller/usersController";
 import verify from "../middleware/authenticator"

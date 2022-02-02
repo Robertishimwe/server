@@ -22,9 +22,9 @@ class BlogController {
       res.status(400).send(error.details[0].message);
     } else {
       const articles = new Article({
-        title: req.body.title,
-        articleBody: req.body.articleBody,
-        ImageLink: req.body.ImageLink,
+        title: req.body.title.trim(),
+        articleBody: req.body.articleBody.trim(),
+        ImageLink: req.body.ImageLink.trim(),
       });
       await articles.save();
       res.status(200).send(articles);

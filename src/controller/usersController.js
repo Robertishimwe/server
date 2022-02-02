@@ -3,6 +3,7 @@
 // const bcrypt = require('bcrypt')
 // const {regiserValidation, loginValidation} = require("../middleware/usersValidation")
 // import { from } from 'formidable/src/parsers/Dummy'
+
 import User from "../models/users"
 import jwt  from "jsonwebtoken";
 import bcrypt from "bcrypt"
@@ -21,9 +22,9 @@ class UserController{
     }
     else{
     const user = new User({
-        "userName":req.body.userName,
-        "userEmail":req.body.userEmail,
-        "userPassword":req.body.userPassword
+        "userName":req.body.userName.trim(),
+        "userEmail":req.body.userEmail.trim(),
+        "userPassword":req.body.userPassword.trim()
     })
     const emailValidation = await User.findOne({userEmail:req.body.userEmail});
     try {
@@ -56,7 +57,7 @@ class UserController{
     const {error} = loginValidation(req.body)
     if(error) return res.status(400).send(error.details[0].message)
    
-    const email = req.body.userEmail;
+    const email = req.body.userEmail.trim();
     const user = await User.findOne({userEmail:email});
     // res.send(user)
     if(!user){
@@ -65,7 +66,7 @@ class UserController{
     
     try {
      const userPassword = user.userPassword;
-    if(await bcrypt.compare(req.body.userPassword,userPassword)){
+    if(await bcrypt.compare(req.body.userPassword.trim(),userPassword)){
         const token = jwt.sign({id:user._id}, process.env.TOKEN_SECRET)
 
 

@@ -4,10 +4,10 @@ import joi from '@hapi/joi';
 //registration validation
 const regiserValidation = (reqBody) =>{
 const registrationSchema = {
-    userName:joi.string().trim().min(4).required(),
-    userEmail:joi.string().trim().email().required(),
-    userPassword:joi.string().trim().min(4).required(),
-    userRole:Joi.string()
+    userName:joi.string().min(4).required(),
+    userEmail:joi.string().email().required(),
+    userPassword:joi.string().min(4).required(),
+    userRole:joi.string()
 }
  return joi.validate(reqBody, registrationSchema);
 }
@@ -16,8 +16,8 @@ module.exports.regiserValidation = regiserValidation;
 
 const loginValidation = (reqBody) =>{
     const loginSchema = {
-        userEmail:joi.string().trim().email().required(),
-        userPassword:joi.string().trim().min(4).required(),
+        userEmail:joi.string().email().required(),
+        userPassword:joi.string().min(4).required(),
     }
      return joi.validate(reqBody, loginSchema);
     }
