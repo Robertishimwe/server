@@ -4,7 +4,7 @@
 [Ishimwe robert](https://github.com/Robertishimwe)
 
 ### Description
-My brand api is background engine of my portfolio website
+My brand api is background engine for my portfolio website. it runs on NodeJs using MongoDB as database with Mongoose as the ORM. I am using JWT for handling authentications and JOI for Validating inputs from the user before they are sent to the server and Bcrypt for hashing passwords stored in the database.
 
 ### Technologies Used
 
