@@ -43,8 +43,19 @@ My brand api is background engine of my portfolio website
      - contact.js
      - usersController.js
    - models
+      - blog.js
+     - contact.js
+     - user.js
    - routes
+     - blogRoute.js
+     - contact.js
+     - userRoute.js
    - middlewares
+       - autenticator.js
+       - blogValidation.js
+      -  commentValidation.js
+      - contactValidation
+      - usersValidation
    - .babelrc
    - .env
    - package.json
