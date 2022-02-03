@@ -26,6 +26,10 @@ class ContactController{
     res.status(200).send(ContactMessage)
 
 }}
+
+              // view single messages
+
+
 static GetsingleMessage =  async (req,res)=>{
       //verify if users is admin
      let userId = req.user.id
@@ -40,6 +44,9 @@ static GetsingleMessage =  async (req,res)=>{
         res.status(404).send("message not found")
     }
 }
+
+          // liste of all messages
+          
 static GetAllMessage = async (req,res)=>{
 
     //verify if users is admin
@@ -57,6 +64,10 @@ static GetAllMessage = async (req,res)=>{
         res.status(404).send("message not found")
     }
 }
+
+
+     //deleting a post     
+
 static DeleteMessage = async (req,res)=>{
       //verify if users is admin
       let userId = req.user.id
@@ -64,13 +75,24 @@ static DeleteMessage = async (req,res)=>{
       const userRole = loggedUser.userRole;
       if(userRole == "user") return res.status(401).send("you are not allowed to access this page")
       
+   
+    const ContactMessage = Message.findOne({_id:req.params.id})
     try{
-    const ContactMessage = Message.findById(req.params.id)
+
+    if (!ContactMessage) {
+        res.send({ message: "Message not found" });
+      } else {
+
+
+
+
+
+    
     await ContactMessage.remove()
     res.status(200).send("message deleted successfully")
-    }catch{
+    }}catch{
         res.status(404).send("message not found")
-    }
+    }}
 }
-}
+
 export default ContactController

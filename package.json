@@ -24,7 +24,10 @@
     "joi-browser": "^13.4.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.8",
-    "supertest": "^6.2.2"
+    "supertest": "^6.2.2",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.3.0",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.16.8",

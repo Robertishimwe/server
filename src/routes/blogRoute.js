@@ -7,7 +7,37 @@ import verify from "../middleware/authenticator"
 import BlogController from "../controller/blogController"
 const router = express.Router();
 
+
+
+
+
+
 router.post("/articles/create",verify, BlogController.createArticle)
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     post:
+ *       type: object
+ *       required:
+ *         - title
+ *         - author
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: The auto-generated id of the book
+ *         title:
+ *           type: string
+ *           description: The book title
+ *         author:
+ *           type: string
+ *           description: The book author
+ *       example:
+ *         id: d5fE_asz
+ *         title: The New Turing Omnibus
+ *         author: Alexander K. Dewdney
+ *
+*/
 router.get("/articles/:id", BlogController.getSingleArticle)
 router.get("/articles", BlogController.getArticleListe)
 router.delete("/articles/:id",verify, BlogController.deleteArticle)
