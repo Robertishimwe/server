@@ -9,16 +9,21 @@ module.exports = {
 
   servers: [
     {
-      url: 'http://127.0.0.1:3090/',
-      description: 'Local server'
-    }
+      url: 'http://127.0.0.1:3000/',
+      description: 'Local server',
+    
+    },
+   {
+    url: 'https://my-brand-api-v2.herokuapp.com/',
+    description: 'Remote sever'
+   }
   ],
   
   
   paths: {
     '/api/articles': {
       get: {
-        tags: ['BlogPost'],
+        tags: ['BLOG'],
         summary: 'To fetch All posts',
         // operationId: 'getUsers',
        
@@ -30,6 +35,12 @@ module.exports = {
                 schema: {
                   $ref: '#/components/schemas/Blog'
                 },
+                
+
+
+
+
+                
                
               }
             }
@@ -42,7 +53,7 @@ module.exports = {
 
     '/api/articles/{id}': {
       get: {
-        tags: ['BlogPost'],
+        tags: ['BLOG'],
         summary: 'To fetch a single post by Id',
         parameters: [{
           name: "id",
@@ -63,10 +74,10 @@ module.exports = {
                   $ref: '#/components/schemas/Blog'
                 },
                 example: {
-                  id: 'd5fE_asz',
-                  title: 'The New Turing Omnibus',
-                  body: 'Alexander K. Dewdney',
-                  imgLink: 'https://www.google.com/search?q=image&sxsrf=APq-WBtK50svBCcQkDbGn7EtidO55wEnSg:1643745123363&tbm=isch&source=iu&ictx=1&vet=1&fir=gxFxsvFBmxeZ9M%252C0JWe7yDOKrVFAM%252C_%253BqXynBYpZpHkhWM%252C4O2GvGuD-Cf09M%252C_%253BMOAYgJU89sFKnM%252CygIoihldBPn-LM%252C_%253BtTplitM2kjOQtM%252C-UStXW0dQEx4SM%252C_%253B2DNOEjVi-CBaYM%252CAOz9-XMe1ixZJM%252C_%253Bl5RllJHFLw5NyM%252CLOSptVP0p_ZwUM%252C_%253BA4G7eW2zetaunM%252Cl3NoP295SYrYvM%252C_%253BbDjlNH-20Ukm8M%252CG9GbNX6HcZ2O_M%252C_%253Bz4_uU0QB2pe-SM%252C7SySw5zvOgPYAM%252C_%253BsmRkxzhk74wASM%252CbUbrhOtxELp8CM%252C_%253BxE4uU8uoFN00aM%252CpEU77tdqT8sGCM%252C_%253BgOUAFhrbQ2nYQM%252COXvyXJop1qSGqM%252C_&usg=AI4_-kQONLnsECQfkpkg0bbsHJMrdYlKOg&sa=X&ved=2ahUKEwi5-rbho9_1AhWQnxQKHYYpCRgQ9QF6BAgFEAE#imgrc=gxFxsvFBmxeZ9M'
+                  id: '011111',
+                  title: 'Andela kigali',
+                  body: 'Andela kigaliAndela kigaliAndela kigaliAndela kigaliAndela kigaliAndela kigali',
+                  imgLink: 'htitM2kjOQtM%252C-UStXW0dQEx4SM%252C_%253B2DNOEjVi-CBaYM%252CAOz9-XMe1ixZJM%252C_%253Bl5RllJHFLw5NyM%252CLOSptVP0p_ZwUM%252C_%253BA4G7eW2zetaunM%252Cl3NoP295SYrYvM%252C_%253BbDjlNH-20Ukm8M%252CG9GbNX6HcZ2O_M%252C_%253Bz4_uU0QB2pe-SM%252C7SySw5zvOgPYAM%252C_%253BsmRkxzhk74wASM%252CbUbrhOtxELp8CM%252C_%253BxE4uU8uoFN00aM%252CpEU77tdqT8sGCM%252C_%253BgOUAFhrbQ2nYQM%252COXvyXJop1qSGqM%252C_&usg=AI4_-kQONLnsECQfkpkg0bbsHJMrdYlKOg&sa=X&ved=2ahUKEwi5-rbho9_1AhWQnxQKHYYpCRgQ9QF6BAgFEAE#imgrc=gxFxsvFBmxeZ9M'
                 },
               },
             }
@@ -78,28 +89,28 @@ module.exports = {
       },
     },
 
-    '/api/Postblog': {
+    '/api/articles/create': {
       post: {
         security: [
           {
-            ApiKeyAuth: []
+            User: []
           }
         ],
-        tags: ['BlogPost'],
+       
+        tags: ['BLOG'],
         summary: 'To post article',
-        description: 'Create users',
         parameters: [],
         requestBody: {
           content: {
             'application/json': {
               schema: {
-                $ref: '#/components/schemas/Blog'
+                $ref: '#/components/schemas/User'
               },
               example: {
-                Title: 'The New Turing Omnibus',
-                Body: 'Alexander K. Dewdney',
-                ImageLink: 'https://www.google.com/search?q=image&sxsrf=APq-WBtK50svBCcQkDbGn7EtidO55wEnSg:1643745123363&tbm=isch&source=iu&ictx=1&vet=1&fir=gxFxsvFBmxeZ9M%252C0JWe7yDOKrVFAM%252C_%253BqXynBYpZpHkhWM%252C4O2GvGuD-Cf09M%252C_%253BMOAYgJU89sFKnM%252CygIoihldBPn-LM%252C_%253BtTplitM2kjOQtM%252C-UStXW0dQEx4SM%252C_%253B2DNOEjVi-CBaYM%252CAOz9-XMe1ixZJM%252C_%253Bl5RllJHFLw5NyM%252CLOSptVP0p_ZwUM%252C_%253BA4G7eW2zetaunM%252Cl3NoP295SYrYvM%252C_%253BbDjlNH-20Ukm8M%252CG9GbNX6HcZ2O_M%252C_%253Bz4_uU0QB2pe-SM%252C7SySw5zvOgPYAM%252C_%253BsmRkxzhk74wASM%252CbUbrhOtxELp8CM%252C_%253BxE4uU8uoFN00aM%252CpEU77tdqT8sGCM%252C_%253BgOUAFhrbQ2nYQM%252COXvyXJop1qSGqM%252C_&usg=AI4_-kQONLnsECQfkpkg0bbsHJMrdYlKOg&sa=X&ved=2ahUKEwi5-rbho9_1AhWQnxQKHYYpCRgQ9QF6BAgFEAE#imgrc=gxFxsvFBmxeZ9M'
-              },
+                "title": "top 10 ricTYDJYTSTRDTYYes",
+                "articleBody": "req.body.articleBody",
+                "ImageLink": "http://djhkjd.com"
+        },
             }
           },
           required: true
@@ -110,31 +121,17 @@ module.exports = {
           },
           '400': {
             description: 'Bad Request',
-            // content: {
-            //   'application/json': {
-            //     schema: {
-            //       $ref: '#/components/schemas/Error'
-            //     },
-            //     example: {
-            //       message: 'User identificationNumbers 10, 20 already exist',
-            //       internal_code: 'invalid_parameters'
-            //     }
-            //   }
-            // }
+        
           }
         }
       }
 
     },
 
-    '/api/Deleteblog/{id}': {
+    '/api/articles/{id}': {
       delete: {
-        security: [
-          {
-            ApiKeyAuth: []
-          }
-        ],
-
+      
+        tags: ['BLOG'],
         summary: 'To delete a single article',
         parameters: [{
           name: "id",
@@ -149,19 +146,7 @@ module.exports = {
         responses: {
           '204': {
             description: 'The blog post deleted successfully',
-            // content: {
-            //   'application/json': {
-            //     schema: {
-            //       $ref: '#/components/schemas/Blog'
-            //     },
-            //     example: {
-            //       id: 'd5fE_asz',
-            //       title: 'The New Turing Omnibus',
-            //       body: 'Alexander K. Dewdney',
-            //       imgLink: 'https://www.google.com/search?q=image&sxsrf=APq-WBtK50svBCcQkDbGn7EtidO55wEnSg:1643745123363&tbm=isch&source=iu&ictx=1&vet=1&fir=gxFxsvFBmxeZ9M%252C0JWe7yDOKrVFAM%252C_%253BqXynBYpZpHkhWM%252C4O2GvGuD-Cf09M%252C_%253BMOAYgJU89sFKnM%252CygIoihldBPn-LM%252C_%253BtTplitM2kjOQtM%252C-UStXW0dQEx4SM%252C_%253B2DNOEjVi-CBaYM%252CAOz9-XMe1ixZJM%252C_%253Bl5RllJHFLw5NyM%252CLOSptVP0p_ZwUM%252C_%253BA4G7eW2zetaunM%252Cl3NoP295SYrYvM%252C_%253BbDjlNH-20Ukm8M%252CG9GbNX6HcZ2O_M%252C_%253Bz4_uU0QB2pe-SM%252C7SySw5zvOgPYAM%252C_%253BsmRkxzhk74wASM%252CbUbrhOtxELp8CM%252C_%253BxE4uU8uoFN00aM%252CpEU77tdqT8sGCM%252C_%253BgOUAFhrbQ2nYQM%252COXvyXJop1qSGqM%252C_&usg=AI4_-kQONLnsECQfkpkg0bbsHJMrdYlKOg&sa=X&ved=2ahUKEwi5-rbho9_1AhWQnxQKHYYpCRgQ9QF6BAgFEAE#imgrc=gxFxsvFBmxeZ9M'
-            //     },
-            //   },
-            // }
+     
           },
           '404': {
             description: 'The blog wasn\'t found'
@@ -170,14 +155,10 @@ module.exports = {
       },
     },
 
-    '/api/Updateblog/{id}': {
+    '/api/articles/{id}': {
       patch: {
-        security: [
-          {
-            ApiKeyAuth: []
-          }
-        ],
-        tags: ['BlogPost'],
+       
+        tags: ['BLOG'],
         description: 'Create users',
         parameters: [{
           name: "id",
@@ -195,11 +176,7 @@ module.exports = {
               schema: {
                 $ref: '#/components/schemas/Blog'
               },
-              example: {
-                Title: 'The New Turing Omnibus',
-                Body: 'Alexander K. Dewdney',
-                ImageLink: 'https://www.google.com/search?q=image&sxsrf=APq-WBtK50svBCcQkDbGn7EtidO55wEnSg:1643745123363&tbm=isch&source=iu&ictx=1&vet=1&fir=gxFxsvFBmxeZ9M%252C0JWe7yDOKrVFAM%252C_%253BqXynBYpZpHkhWM%252C4O2GvGuD-Cf09M%252C_%253BMOAYgJU89sFKnM%252CygIoihldBPn-LM%252C_%253BtTplitM2kjOQtM%252C-UStXW0dQEx4SM%252C_%253B2DNOEjVi-CBaYM%252CAOz9-XMe1ixZJM%252C_%253Bl5RllJHFLw5NyM%252CLOSptVP0p_ZwUM%252C_%253BA4G7eW2zetaunM%252Cl3NoP295SYrYvM%252C_%253BbDjlNH-20Ukm8M%252CG9GbNX6HcZ2O_M%252C_%253Bz4_uU0QB2pe-SM%252C7SySw5zvOgPYAM%252C_%253BsmRkxzhk74wASM%252CbUbrhOtxELp8CM%252C_%253BxE4uU8uoFN00aM%252CpEU77tdqT8sGCM%252C_%253BgOUAFhrbQ2nYQM%252COXvyXJop1qSGqM%252C_&usg=AI4_-kQONLnsECQfkpkg0bbsHJMrdYlKOg&sa=X&ved=2ahUKEwi5-rbho9_1AhWQnxQKHYYpCRgQ9QF6BAgFEAE#imgrc=gxFxsvFBmxeZ9M'
-              },
+             
             }
           },
           required: true
@@ -210,17 +187,7 @@ module.exports = {
           },
           '400': {
             description: 'Bad Request',
-            // content: {
-            //   'application/json': {
-            //     schema: {
-            //       $ref: '#/components/schemas/Error'
-            //     },
-            //     example: {
-            //       message: 'User identificationNumbers 10, 20 already exist',
-            //       internal_code: 'invalid_parameters'
-            //     }
-            //   }
-            // }
+     
           }
         }
       }
@@ -228,13 +195,9 @@ module.exports = {
     },
 
     '/api/comment/{id}': {
-      put: {
-        security: [
-          {
-            ApiKeyAuth: []
-          }
-        ],
-        tags: ['BlogPost'],
+      putch: {
+       
+        tags: ['BLOG'],
         description: 'Comment on a blog',
         parameters: [{
           name: "id",
@@ -265,32 +228,18 @@ module.exports = {
           },
           '400': {
             description: 'Bad Request',
-            // content: {
-            //   'application/json': {
-            //     schema: {
-            //       $ref: '#/components/schemas/Error'
-            //     },
-            //     example: {
-            //       message: 'User identificationNumbers 10, 20 already exist',
-            //       internal_code: 'invalid_parameters'
-            //     }
-            //   }
-            // }
+         
           }
         }
       }
 
     },
 
-    '/api/like/{id}': {
-      put: {
-        security: [
-          {
-            ApiKeyAuth: []
-          }
-        ],
-        tags: ['BlogPost'],
-        description: 'Like a blog',
+    '/api/articles/like/{id}': {
+      get: {
+       
+        tags: ['BLOG'],
+        description: 'Like a article',
         parameters: [{
           name: "id",
           in: "path",
@@ -301,78 +250,17 @@ module.exports = {
           },
           
       }],
-        // requestBody: {
-        //   content: {
-        //     'application/json': {
-        //       schema: {
-        //         $ref: '#/components/schemas/Comment'
-        //       },
-        //       example: {
-        //         Comment: 'Nice Work!',
-        //       },
-        //     }
-        //   },
-        //   required: true
-        // },
+       
+
+
+      
         responses: {
           '200': {
             description: 'Liked a Post Successfully',
           },
           '400': {
             description: 'Bad Request',
-            // content: {
-            //   'application/json': {
-            //     schema: {
-            //       $ref: '#/components/schemas/Error'
-            //     },
-            //     example: {
-            //       message: 'User identificationNumbers 10, 20 already exist',
-            //       internal_code: 'invalid_parameters'
-            //     }
-            //   }
-            // }
-          }
-        }
-      }
-
-    },
-
-    '/api/PostContact': {
-      post: {
-        tags: ['ContactForm'],
-        description: 'Create contact query',
-        requestBody: {
-          content: {
-            'application/json': {
-              schema: {
-                $ref: '#/components/schemas/Contact'
-              },
-              example: {
-                FullName: 'Alexander The Great',
-                Email: 'guest@alexander.com',
-                Messages: 'Hello I want to hire you in my company send your resume and cover letter'
-              },
-            }
-          },
-          required: true
-        },
-        responses: {
-          '200': {
-            description: 'New Query was created successfully'
-          },
-          '400': {
-            description: 'Bad Request',
-            // content: {
-            //   'application/json': {
-            //     schema: {
-            //       $ref: '#/components/schemas/Error'
-            //     },
-            //     example: {
-            //       message: 'User identificationNumbers 10, 20 already exist',
-            //       internal_code: 'invalid_parameters'
-            //     }
-            //   }
-            // }
+           
           }
         }
       }
@@ -380,14 +268,10 @@ module.exports = {
     },
 
     '/api/contact': {
-      get: {
-        security: [
-          {
-            ApiKeyAuth: []
-          }
-        ],
-        tags: ['ContactForm'],
-        summary: 'Returns the list of all the queries',
+      post: {
+       
+        tags: ['CONTACT'],
+        summary: 'send  MESSAGES',
         responses: {
           '200': {
             description: 'The list of the queries',
@@ -396,12 +280,31 @@ module.exports = {
                 schema: {
                   $ref: '#/components/schemas/Contact'
                 },
-                example: {
-                  id: 'd5fE_asz',
-                  FullName: 'Alexander The Great',
-                  Email: 'guest@alexander.com',
-                  Messages: 'Hello I want to hire you in my company send your resume and cover letter'
+             
+              }
+            }
+          },
+          
+        }
+      },
+
+    },
+
+
+    '/api/contact': {
+      get: {
+       
+        tags: ['CONTACT'],
+        summary: 'RECIEVED MESSAGES',
+        responses: {
+          '200': {
+            description: 'The list of the queries',
+            content: {
+              'application/json': {
+                schema: {
+                  $ref: '#/components/schemas/Contact'
                 },
+             
               }
             }
           },
@@ -413,13 +316,9 @@ module.exports = {
 
     '/api/contact/{id}': {
       get: {
-        security: [
-          {
-            ApiKeyAuth: []
-          }
-        ],
-        tags: ['ContactForm'],
-        summary: 'Returns the contact query by id',
+        
+        tags: ['CONTACT'],
+        summary: 'VIEW A SINGLE MESSAGE',
         parameters: [{
           name: "id",
           in: "path",
@@ -454,15 +353,11 @@ module.exports = {
       },
     },
 
-    '/api/DeleteContact/{id}': {
+    '/api/contact/{id}': {
       delete: {
-        security: [
-          {
-            ApiKeyAuth: []
-          }
-        ],
-        tags: ['ContactForm'],
-        summary: 'Delete the query post by id',
+       
+        tags: ['CONTACT'],
+        summary: 'VIEW A SINGLE MESSAGE BY ID',
         parameters: [{
           name: "id",
           in: "path",
@@ -476,19 +371,7 @@ module.exports = {
         responses: {
           '200': {
             description: 'The query post deleted successfully',
-            // content: {
-            //   'application/json': {
-            //     schema: {
-            //       $ref: '#/components/schemas/Blog'
-            //     },
-            //     example: {
-            //       id: 'd5fE_asz',
-            //       title: 'The New Turing Omnibus',
-            //       body: 'Alexander K. Dewdney',
-            //       imgLink: 'https://www.google.com/search?q=image&sxsrf=APq-WBtK50svBCcQkDbGn7EtidO55wEnSg:1643745123363&tbm=isch&source=iu&ictx=1&vet=1&fir=gxFxsvFBmxeZ9M%252C0JWe7yDOKrVFAM%252C_%253BqXynBYpZpHkhWM%252C4O2GvGuD-Cf09M%252C_%253BMOAYgJU89sFKnM%252CygIoihldBPn-LM%252C_%253BtTplitM2kjOQtM%252C-UStXW0dQEx4SM%252C_%253B2DNOEjVi-CBaYM%252CAOz9-XMe1ixZJM%252C_%253Bl5RllJHFLw5NyM%252CLOSptVP0p_ZwUM%252C_%253BA4G7eW2zetaunM%252Cl3NoP295SYrYvM%252C_%253BbDjlNH-20Ukm8M%252CG9GbNX6HcZ2O_M%252C_%253Bz4_uU0QB2pe-SM%252C7SySw5zvOgPYAM%252C_%253BsmRkxzhk74wASM%252CbUbrhOtxELp8CM%252C_%253BxE4uU8uoFN00aM%252CpEU77tdqT8sGCM%252C_%253BgOUAFhrbQ2nYQM%252COXvyXJop1qSGqM%252C_&usg=AI4_-kQONLnsECQfkpkg0bbsHJMrdYlKOg&sa=X&ved=2ahUKEwi5-rbho9_1AhWQnxQKHYYpCRgQ9QF6BAgFEAE#imgrc=gxFxsvFBmxeZ9M'
-            //     },
-            //   },
-            // }
+
           },
           '404': {
             description: 'The query wasn\'t found'
@@ -497,9 +380,9 @@ module.exports = {
       },
     },
 
-    '/api/register': {
+    '/api/user/register': {
       post: {
-        tags: ['Registration'],
+        tags: ['USER'],
         description: 'Create Account',
         requestBody: {
           content: {
@@ -522,52 +405,17 @@ module.exports = {
           },
           '400': {
             description: 'Bad Request',
-            // content: {
-            //   'application/json': {
-            //     schema: {
-            //       $ref: '#/components/schemas/Error'
-            //     },
-            //     example: {
-            //       message: 'User identificationNumbers 10, 20 already exist',
-            //       internal_code: 'invalid_parameters'
-            //     }
-            //   }
-            // }
+           
           }
         }
       }
 
     },
 
-    // '/api/users': {
-    //   get: {
-    //     security: [
-    //       {
-    //         ApiKeyAuth: []
-    //       }
-    //     ],
-    //     tags: ['Users'],
-    //     summary: 'Returns the list of all the users',
-    //     responses: {
-    //       '200': {
-    //         description: 'The list of the users',
-    //         content: {
-    //           'application/json': {
-    //             schema: {
-    //               $ref: '#/components/schemas/User'
-    //             },
-    //           }
-    //         }
-    //       },
-          
-    //     }
-    //   },
-
-    // },
-
+   
     '/api/user/login': {
       post: {
-        tags: ['Login'],
+        tags: ['USER'],
         description: 'Log In',
         requestBody: {
           content: {
@@ -575,10 +423,11 @@ module.exports = {
               schema: {
                 $ref: '#/components/schemas/User'
               },
-              example: {
-                Email: 'guest@alexander.com',
-                Password: 'password'
-              },
+              example:{
+                "userEmail":"andela@andela.com",
+                "userPassword":"Andela"
+           
+           }
             }
           },
           required: true
@@ -600,145 +449,35 @@ module.exports = {
             //     }
             //   }
             // }
-          }
-        }
+          
       }
 
     },
 
-    '/api/admin': {
-      post: {
-        tags: ['Login'],
-        description: 'Log In',
-        requestBody: {
-          content: {
-            'application/json': {
-              schema: {
-                $ref: '#/components/schemas/User'
-              },
-            }
-          },
-          required: true
-        },
-        responses: {
-          '200': {
-            description: 'Admin Logged In Successfully'
-          },
-          '400': {
-            description: 'Bad Request',
-            // content: {
-            //   'application/json': {
-            //     schema: {
-            //       $ref: '#/components/schemas/Error'
-            //     },
-            //     example: {
-            //       message: 'User identificationNumbers 10, 20 already exist',
-            //       internal_code: 'invalid_parameters'
-            //     }
-            //   }
-            // }
-          }
-        }
+
+    components: {
+      schemas: {
+
+        
+
+        User: {
+          type: 'apiKey',
+          in: 'header',
+          name: 'auth-token' },
+
+
+
+
+
+
+
+      }
+    }
+
+   
       }
 
     },
 
   },
-
-  components: {
-    schemas: {
-      
-
-      Blog : {
-        type: 'object',
-        
-        properties : {
-          id: {
-            type: 'string',
-            description: 'The auto-generated id of the blog'
-          },
-          title: {
-            type: 'string',
-            description: 'The blog title'
-          },
-          body: {
-            type: 'string',
-            description: 'The body of the blog'
-          },
-          imgLink: {
-            type: 'string',
-            description: 'The Link of the Image Link'
-          },
-          
-        }
-      },
-
-      Comment: {
-        type: 'object',
-
-        properties: {
-          Comment: {
-            type: 'string',
-            description: 'Type your comment here',
-          }
-        }
-      },
-
-      Contact : {
-        type: 'object',
-        
-        properties : {
-          id: {
-            type: 'string',
-            description: 'The auto-generated id of the blog'
-          },
-          FullName: {
-            type: 'string',
-            description: 'Fullname of the sender'
-          },
-          Email: {
-            type: 'string',
-            description: 'Sender\'s email address'
-          },
-          Messages: {
-            type: 'string',
-            description: 'The message of the sender'
-          },
-          
-        }
-      },
-
-      User : {
-        type: 'object',
-        
-        properties : {
-          id: {
-            type: 'string',
-            description: 'The auto-generated id of the User'
-          },
-          UserName: {
-            type: 'string',
-            description: 'Username of the User'
-          },
-          Email: {
-            type: 'string',
-            description: 'User\'s email address'
-          },
-          Password: {
-            type: 'string',
-            description: 'The password of the user'
-          },
-          
-        }
-      },
-      
-    },
-    securitySchemes: {
-      ApiKeyAuth: {
-        type: 'apiKey',
-        in: 'header',
-        name: 'admin-token' 
-      }
-    }
-  }
-};
+}

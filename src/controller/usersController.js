@@ -21,9 +21,9 @@ class UserController{
     }
     else{
     const user = new User({
-        "userName":req.body.userName,
-        "userEmail":req.body.userEmail,
-        "userPassword":req.body.userPassword
+        "userName":req.body.userName.trim(),
+        "userEmail":req.body.userEmail.trim(),
+        "userPassword":req.body.userPassword.trim()
     })
     const emailValidation = await User.findOne({userEmail:req.body.userEmail});
     try {
