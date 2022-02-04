@@ -13,7 +13,7 @@ class ContactController{
 
     const {error} = contactFormValidation(req.body)
     if(error){
-        res.status(400).send(error.details[0].message)
+        res.status(400).send({Message:error.details[0].message})
     }
     else{
 
@@ -36,12 +36,12 @@ static GetsingleMessage =  async (req,res)=>{
      const loggedUser = await User.findById(userId);
      const userRole = loggedUser.userRole;
 
-     if(userRole == "user") return res.status(401).send("you are not allowed to access this page")
+     if(userRole == "user") return res.status(401).send({Message:"you are not allowed to access this page"})
     try{
     const ContactMessage = await Message.findById(req.params.id)
     res.status(200).json({message:"Message recieved succesfuly",ContactMessage})
     }catch{
-        res.status(404).send("message not found")
+        res.status(404).send({Message:"message not found"})
     }
 }
 
@@ -54,14 +54,14 @@ static GetAllMessage = async (req,res)=>{
      const loggedUser = await User.findById(userId);
      const userRole = loggedUser.userRole;
 
-     if(userRole == "user") return res.status(401).send("you are not allowed to access this page")
+     if(userRole == "user") return res.status(401).send({Message:"you are not allowed to access this page"})
 
 
     try{
     const ContactMessage = await Message.find()
     res.status(200).send({ContactMessage})
     }catch{
-        res.status(404).send("message not found")
+        res.status(404).send({Message:"message not found"})
     }
 }
 
@@ -73,7 +73,7 @@ static DeleteMessage = async (req,res)=>{
       let userId = req.user.id
       const loggedUser = await User.findById(userId);
       const userRole = loggedUser.userRole;
-      if(userRole == "user") return res.status(401).send("you are not allowed to access this page")
+      if(userRole == "user") return res.status(401).send({Message:"you are not allowed to access this page"})
       
    
     const ContactMessage = Message.findOne({_id:req.params.id})
@@ -89,9 +89,9 @@ static DeleteMessage = async (req,res)=>{
 
     
     await ContactMessage.remove()
-    res.status(200).send("message deleted successfully")
+    res.status(200).send({Message:"message deleted successfully"})
     }}catch{
-        res.status(404).send("message not found")
+        res.status(404).send({Message:"message not found"})
     }}
 }
 

@@ -29,14 +29,14 @@ class UserController{
     try {
 
         if(emailValidation){
-            res.send("user exist")
+            res.send({Message:"User already exist"})
         }
         else{
             await user.save()
             res.status(200).send(user)
         }
     } catch (error) {
-        res.status(500).send("server error", error)
+        res.status(500).send({Message:"server error",error})
     }
 
 
@@ -60,7 +60,7 @@ class UserController{
     const user = await User.findOne({userEmail:email});
     // res.send(user)
     if(!user){
-       return res.send("user not found")
+       return res.send({Message:"User not found"})
     }
     
     try {
@@ -71,15 +71,15 @@ class UserController{
 
     
    const userRole = user.userRole;
-   if(userRole == "admin") return res.set("authantication", token).send("admin panel")
-   if(userRole == "user") return res.set("authantication", token).send("logged in as users")
+   if(userRole == "admin") return res.set("authantication", token).send({Message:"Logged in as admin"})
+   if(userRole == "user") return res.set("authantication", token).send({Message:"Logged in as user"})
 
         //admin validation
 
         // res.set("authantication", token).send(userId)
     // res.send("successfuly loggedin")
     }else{
-        res.send("not allowed")
+        res.send({Message:"You are not allowed to access this page"})
     }
     } catch (error) {
         res.status(500).send(error)
@@ -93,7 +93,7 @@ class UserController{
     let userId = req.user.id
     const loggedUser = await User.findById(userId);
     const userRole = loggedUser.userRole;
-    if(userRole == "user") return res.status(401).send("you are not allowed to access this page")
+    if(userRole == "user") return res.status(401).send({Message:"you are not allowed to access this page"})
 
 
     const user = await User.find()

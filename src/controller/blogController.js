@@ -19,11 +19,11 @@ class BlogController {
     const loggedUser = await User.findById(userId);
     const userRole = loggedUser.userRole;
     if (userRole == "user")
-      return res.status(401).send("you are not allowed to access this page");
+      return res.status(401).send({Message:"you are not allowed to access this page"});
 
     const { error } = articleValidation(req.body);
     if (error) {
-      res.status(400).send(error.details[0].message);
+      res.status(400).send({Message:error.details[0].message});
     } else {
       const articles = new Article({
         title: req.body.title.trim(),
@@ -54,7 +54,7 @@ class BlogController {
     const loggedUser = await User.findById(userId);
     const userRole = loggedUser.userRole;
     if (userRole == "user")
-      return res.status(401).send("you are not allowed to access this page");
+      return res.status(401).send({Message:"you are not allowed to access this page"});
 
     const articles = await Article.findById(req.params.id);
     try {
@@ -77,7 +77,7 @@ class BlogController {
     const loggedUser = await User.findById(userId);
     const userRole = loggedUser.userRole;
     if (userRole == "user")
-      return res.status(401).send("you are not allowed to access this page");
+      return res.status(401).send({Message:"you are not allowed to access this page"});
 
     const articles = await Article.findById(req.params.id);
     try {
@@ -127,7 +127,7 @@ class BlogController {
         let userId = req.user.id;
         let oldLike = articles.likes;
         for (let i = 0; i <= oldLike.length; i++) {
-          if (userId == oldLike[i]) return res.send("Already liked");
+          if (userId == oldLike[i]) return res.send({Message:"Already liked"});
         }
 
         oldLike.push(userId);
