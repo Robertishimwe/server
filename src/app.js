@@ -55,7 +55,7 @@ app.use("/api", contact_route)
 app.use("/api", users_route)
 app.use("/api", blog_route)
 app.use("/api-docs",swaggerUI.serve,swaggerUI.setup(documentation))
-app.use(cors({}))
+app.use(cors({origin:"https://my-brand-api-v2.herokuapp.com/"}))
 
 
 //port connection
