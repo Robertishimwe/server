@@ -61,6 +61,7 @@ app.all("*", (req, res, next) => {
     res.header("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, PATCH, OPTIONS");
     res.header("Access-Control-Allow-Headers", "*");
     res.header("Access-Control-Allow-Credentials", true);
+    app.use(cors({origin:"*"}))
     next();
   });
 
