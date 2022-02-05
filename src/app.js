@@ -11,6 +11,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import swaggerUI from 'swagger-ui-express';
 import documentation from '../documentation';
+import cors from 'cors'
 import swaggerJsDoc from 'swagger-jsdoc';
 
 dotenv.config();
@@ -54,6 +55,7 @@ app.use("/api", contact_route)
 app.use("/api", users_route)
 app.use("/api", blog_route)
 app.use("/api-docs",swaggerUI.serve,swaggerUI.setup(documentation))
+app.use(cors({origin:"*"}))
 
 
 //port connection
