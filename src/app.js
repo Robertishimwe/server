@@ -12,8 +12,12 @@ import mongoose from 'mongoose';
 import swaggerUI from 'swagger-ui-express';
 import documentation from '../documentation';
 import swaggerJsDoc from 'swagger-jsdoc';
-var cors = require('cors')
-app.use(cors())
+const cors = require('cors')
+// app.use(cors())
+const corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }
 
 dotenv.config();
 const app = express()
@@ -52,10 +56,13 @@ mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true, useUnifiedTopo
 
 // Route
 app.use(express.json())
-app.use("/api", contact_route)
-app.use("/api", users_route)
-app.use("/api", blog_route)
-app.use("/api-docs",swaggerUI.serve,swaggerUI.setup(documentation))
+app.get("/test",cors(corsOptions),(req,res)=>{
+    res.json({message:"you made it blooo"})
+})
+app.use("/api",cors(corsOptions), contact_route)
+app.use("/api",cors(corsOptions), users_route)
+app.use("/api",cors(corsOptions), blog_route)
+app.use("/api-docs",cors(corsOptions),swaggerUI.serve,swaggerUI.setup(documentation))
 // app.use(cors({origin:"*"}))
 // app.all("*", (req, res, next) => {
 //     res.header("Access-Control-Allow-Origin", "*");
