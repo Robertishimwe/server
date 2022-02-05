@@ -11,8 +11,9 @@ import express from 'express';
 import mongoose from 'mongoose';
 import swaggerUI from 'swagger-ui-express';
 import documentation from '../documentation';
-import cors from 'cors'
 import swaggerJsDoc from 'swagger-jsdoc';
+var cors = require('cors')
+app.use(cors())
 
 dotenv.config();
 const app = express()
@@ -55,15 +56,15 @@ app.use("/api", contact_route)
 app.use("/api", users_route)
 app.use("/api", blog_route)
 app.use("/api-docs",swaggerUI.serve,swaggerUI.setup(documentation))
-app.use(cors({origin:"*"}))
-app.all("*", (req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, PATCH, OPTIONS");
-    res.header("Access-Control-Allow-Headers", "*");
-    res.header("Access-Control-Allow-Credentials", true);
-    app.use(cors({origin:"*"}))
-    next();
-  });
+// app.use(cors({origin:"*"}))
+// app.all("*", (req, res, next) => {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, PATCH, OPTIONS");
+//     res.header("Access-Control-Allow-Headers", "*");
+//     res.header("Access-Control-Allow-Credentials", true);
+//     app.use(cors({origin:"*"}))
+//     next();
+//   });
 
 
 
