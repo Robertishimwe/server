@@ -11,7 +11,7 @@ module.exports = function (req, res, next) {
       req.user = authorized;
       next();
     } catch (error) {
-      res.status.send("invalide token");
+      res.status(400).send("invalide token");
     }
   }
 };

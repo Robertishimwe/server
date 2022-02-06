@@ -7,7 +7,8 @@
     "babel-core": "7.0.0-bridge.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./node_modules/.bin/mocha --timeout 100000 --exit --require @babel/register",
+
     "start": "nodemon --exec babel-node src/app.js"
   },
   "keywords": [],

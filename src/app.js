@@ -63,20 +63,12 @@ app.use("/api",cors(corsOptions), contact_route)
 app.use("/api",cors(corsOptions), users_route)
 app.use("/api",cors(corsOptions), blog_route)
 app.use("/api-docs",cors(corsOptions),swaggerUI.serve,swaggerUI.setup(documentation))
-// app.use(cors({origin:"*"}))
-// app.all("*", (req, res, next) => {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, PATCH, OPTIONS");
-//     res.header("Access-Control-Allow-Headers", "*");
-//     res.header("Access-Control-Allow-Credentials", true);
-//     app.use(cors({origin:"*"}))
-//     next();
-//   });
-
-
+app.use("/api",cors(corsOptions),"*")
+app.all(cors(corsOptions))
 
 //port connection
 const port = process.env.PORT || 3000
 app.listen(port, ()=>{
     console.log(`server running on port:${port}`)
 }) 
+module.exports = app

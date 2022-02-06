@@ -15,11 +15,15 @@ import User from "../models/users";
 class BlogController {
   static createArticle = async (req, res) => {
     //verify if users is admin
+    if (!req.user.id)
+    return res.status(400).send({Message:"No user with such credentiols"});
     let userId = req.user.id;
     const loggedUser = await User.findById(userId);
     const userRole = loggedUser.userRole;
+
     if (userRole == "user")
       return res.status(401).send({Message:"you are not allowed to access this page"});
+
 
     const { error } = articleValidation(req.body);
     if (error) {
@@ -62,7 +66,7 @@ class BlogController {
         res.send({ message: "Article not found" });
       } else {
         await articles.remove();
-        res.status(200).json({ message: "articles was deleted succesfuly" });
+        res.status(204).json({ message: "articles was deleted succesfuly" });
       }
     } catch (error) {
       res.send(error);
