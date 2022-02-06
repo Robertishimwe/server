@@ -8,7 +8,6 @@
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha --timeout 100000 --exit --require @babel/register",
-
     "start": "nodemon --exec babel-node src/app.js"
   },
   "keywords": [],
