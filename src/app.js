@@ -32,7 +32,7 @@ const app = express()
 //         info:{
 //             title:'My Brand Api',
 //             version:"1.0.0",
-//             description:"My brand api is background engine for my portfolio website. it runs on NodeJs using MongoDB as database with Mongoose as the ORM. I am using JWT for handling authentications and JOI for Validating inputs from the user before they are sent to the server and Bcrypt for hashing passwords stored in the database."
+//             description:"My rand api is background engine for my portfolio website. it runs on NodeJs using MongoDB as database with Mongoose as the ORM. I am using JWT for handling authentications and JOI for Validating inputs from the user before they are sent to the server and Bcrypt for hashing passwords stored in the database."
 //         },
 //         servers:[
 //             {
