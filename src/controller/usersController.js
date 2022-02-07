@@ -79,7 +79,7 @@ class UserController{
         // res.set("authantication", token).send(userId)
     // res.send("successfuly loggedin")
     }else{
-        res.status(401).send({Message:"You are not allowed to access this page"})
+        res.status(401).send({Message:"Invalid username or password"})
     }
     } catch (error) {
         res.status(500).send(error)
