@@ -11,6 +11,10 @@ const userLogin = {
         "userEmail":"andela@andela.com",
         "userPassword":"Andela"
 };
+const userLogin2 = {
+  "userEmail":"andela@andela.com",
+  "userPassword":"Andel"
+};
 
 const userRegister = {
     "userName":"kevin",
@@ -19,21 +23,6 @@ const userRegister = {
 };
 
 describe("Register & login", () => {
-//   //get all posts
-
-//   describe("GET /api/user/register", () => {
-//     it("It Should Register a user", (done) => {
-//       chai
-//         .request(app)
-//         .get("/api/user/register")
-//         .end((err, res) => {
-//           res.should.have.status(200);
-//           done();
-//         })
-//         .timeout(10000);
-//     });
-//   });
-// });
 
 
 
@@ -58,11 +47,11 @@ describe("GET /api/user/register", () => {
 // login test
 
 
-describe("GET /api/user/register", () => {
-    it("It Should Register a user", (done) => {
+describe("GET /api/user/login", () => {
+    it("It Should login a user", (done) => {
     request(app)
       .post("/api/user/login") 
-      .send(userRegister)
+      .send(userLogin)
       .end((err, res) => {
         res.should.have.status(200);
        done();
@@ -71,5 +60,59 @@ describe("GET /api/user/register", () => {
   });
   
   });
+
+ 
+describe("GET /api/user/login", () => {
+  it("It Should not login a user", (done) => {
+  request(app)
+    .post("/api/user/login") 
+    .send(userLogin2)
+    .end((err, res) => {
+      res.should.have.status(401);
+     done();
+    })
+
+});
+
+});
+
+
+
+describe("GET /api/user", () => {
+  it("It Should not Fetch all user", (done) => {
+    chai
+      .request(app)
+      .get("/api/user/")
+      .end((err, res) => {
+        res.should.have.status(401);
+        done();
+      })
+      .timeout(10000);
+  });
+});
+
+
+
+describe("GET /api/user", () => {
+  let Token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjdmOGIzMGY2NTlmMTQ4YTI0NTM4NCIsImlhdCI6MTY0NDE3NDExN30.HQg8meIfa_q3B-WfvYgMEcq-sjsU3pfWEV8P9jwPpn0"
+it("It Should not Fetch all user", (done) => {
+  request(app)
+    .get("/api/user")
+    .set({
+        'authantication': Token,
+    })  
+    .end((err, res) => {
+      res.should.have.status(200);
+     done();
+    })
+
+});
+
+});
+
+
+
+
+
   
 });

@@ -55,7 +55,7 @@ class BlogController {
   static deleteArticle = async (req, res) => {
     //verify if users is admin
     let userId = req.user.id;
-    const loggedUser = await User.findById(userId);
+    const loggedUser = await User.findOne({userId:userId});
     const userRole = loggedUser.userRole;
     if (userRole == "user")
       return res.status(401).send({Message:"you are not allowed to access this page"});
@@ -63,7 +63,7 @@ class BlogController {
     const articles = await Article.findById(req.params.id);
     try {
       if (!articles) {
-        res.send({ message: "Article not found" });
+        res.status(404).send({ message: "Article not found" });
       } else {
         await articles.remove();
         res.status(204).json({ message: "articles was deleted succesfuly" });

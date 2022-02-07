@@ -96,26 +96,6 @@ it("should be blocked from posting", (done) => {
 
 
 
-  //delete route
 
-  describe("DELETE /api/articles/:id", () => {
-    let Token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjdmOGIzMGY2NTlmMTQ4YTI0NTM4NCIsImlhdCI6MTY0NDE3ODc3NX0.FMsE4iNmD5OUD1qdGDWfSNKg70qU-Ke-had2JWhliZ8"
-    it("It Should be able to delete a post", (done) => {
-      const id = "61f8f820b50dd2e0de8895ab";
-      request(app)
-        .delete("/api/articles/" + id)
-        .set({
-          'admin-token': Token,
-        })
-        .end((err, res) => {
-          res.should.have.status(401);
-         done();
-        })
-    
-          
-        })
-        .timeout(10000);
-    
-  });
 
 })

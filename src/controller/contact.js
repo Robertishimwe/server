@@ -89,7 +89,7 @@ static DeleteMessage = async (req,res)=>{
 
     
     await ContactMessage.remove()
-    res.status(200).send({Message:"message deleted successfully"})
+    res.status(204).send({Message:"message deleted successfully"})
     }}catch{
         res.status(404).send({Message:"message not found"})
     }}

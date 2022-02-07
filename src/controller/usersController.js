@@ -60,7 +60,7 @@ class UserController{
     const user = await User.findOne({userEmail:email});
     // res.send(user)
     if(!user){
-       return res.send({Message:"User not found"})
+       return res.status(404).send({Message:"User not found"})
     }
     
     try {
@@ -79,7 +79,7 @@ class UserController{
         // res.set("authantication", token).send(userId)
     // res.send("successfuly loggedin")
     }else{
-        res.send({Message:"You are not allowed to access this page"})
+        res.status(401).send({Message:"You are not allowed to access this page"})
     }
     } catch (error) {
         res.status(500).send(error)
