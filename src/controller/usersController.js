@@ -33,7 +33,7 @@ class UserController{
         }
         else{
             await user.save()
-            res.status(200).send({Message:"Account has been successfully created"})
+            res.status(200).send({Message:"Account created successfully"})
         }
     } catch (error) {
         res.status(500).send({Message:"server error",error})
