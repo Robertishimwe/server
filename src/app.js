@@ -66,6 +66,7 @@ app.use("/api",cors(corsOptions), contact_route)
 app.use("/api",cors(corsOptions), users_route)
 app.use("/api",cors(corsOptions), blog_route)
 app.use("/api-docs",cors(corsOptions),swaggerUI.serve,swaggerUI.setup(documentation))
+app.use(cors(corsOptions))
 // app.use("/api",cors(corsOptions),"*")
 // app.all(cors(corsOptions))
 
