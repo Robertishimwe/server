@@ -77,6 +77,7 @@ class UserController{
         //admin validation
 
         // res.set("authantication", token).send(userId)
+        //
     // res.send("successfuly loggedin")
     }else{
         res.status(401).send({Message:"Invalid username or password"})
