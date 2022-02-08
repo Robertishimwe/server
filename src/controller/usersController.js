@@ -71,12 +71,13 @@ class UserController{
 
     
    const userRole = user.userRole;
-   if(userRole == "admin") return res.set("authantication", token).send({Message:"Logged in as admin"})
+   if(userRole == "admin") return res.set("authantication", token).send({Message:"Logged in as admin",userData:{name:user.userName,Role:user.userRole}})
    if(userRole == "user") return res.set("authantication", token).send({Message:"Logged in as user"})
 
         //admin validation
 
         // res.set("authantication", token).send(userId)
+        //
     // res.send("successfuly loggedin")
     }else{
         res.status(401).send({Message:"Invalid username or password"})
