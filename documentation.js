@@ -590,6 +590,8 @@ module.exports = {
    
   },
 
+
+
   servers: [
     {
       url: 'http://127.0.0.1:3000/',
@@ -742,7 +744,7 @@ module.exports = {
       post: {
         security: [
           {
-            User: []
+            ApiKey: []
           }
         ],
        
@@ -784,6 +786,11 @@ module.exports = {
 
     '/api/articles/{did}': {
       delete: {
+         security: [
+            {
+              ApiKey: []
+            }
+          ],
       
         tags: ['BLOG'],
         summary: 'To delete a single article',
@@ -818,6 +825,11 @@ module.exports = {
       patch: {
        
         tags: ['BLOG'],
+        security: [
+          {
+            ApiKey: []
+          }
+        ],
         summary: 'UPDATE POST',
         description: 'UPDATE POST',
         parameters: [{
@@ -860,6 +872,11 @@ module.exports = {
       patch: {
        
         tags: ['BLOG'],
+        security: [
+          {
+            ApiKey: []
+          }
+        ],
         summary: 'COMMENT ON POST',
         description: 'Comment on a blog',
         parameters: [{
@@ -879,7 +896,7 @@ module.exports = {
                 $ref: '##/components/schemas/Comment'
               },
               example: {
-                Comment: 'Nice Work!',
+                comments: 'You made it bro!',
               },
             }
           },
@@ -905,6 +922,11 @@ module.exports = {
       patch: {
        
         tags: ['BLOG'],
+        security: [
+          {
+            ApiKey: []
+          }
+        ],
         description: 'Like a article',
         summary: 'LIKE A POST',
         parameters: [{
@@ -966,6 +988,11 @@ module.exports = {
       get: {
        
         tags: ['CONTACT'],
+        security: [
+          {
+            ApiKey: []
+          }
+        ],
         summary: 'RECIEVED MESSAGES',
         responses: {
           '200': {
@@ -989,6 +1016,11 @@ module.exports = {
       get: {
         
         tags: ['CONTACT'],
+        security: [
+          {
+            ApiKey: []
+          }
+        ],
         summary: 'VIEW A SINGLE MESSAGE',
         parameters: [{
           name: "id",
@@ -1010,9 +1042,9 @@ module.exports = {
                 },
                 example: {
                   id: 'd5fE_asz',
-                  FullName: 'Alexander The Great',
-                  Email: 'guest@alexander.com',
-                  Messages: 'Hello I want to hire you in my company send your resume and cover letter'
+                  FullName: 'ishimwe robert',
+                  Email: 'andela@andela.com',
+                  Messages: 'testing api '
                 },
               },
             }
@@ -1028,6 +1060,11 @@ module.exports = {
       delete: {
        
         tags: ['CONTACT'],
+        security: [
+          {
+            ApiKey: []
+          }
+        ],
         summary: 'DELETE A MESSAGE BY ID',
         parameters: [{
           name: "id",
@@ -1094,9 +1131,12 @@ module.exports = {
     '/api/user': {
       get: {
         tags: ['USER'],
+        security: [
+          {
+            ApiKey: []
+          }
+        ],
         summary: 'TO FETCH ALL USERS',
-        // operationId: 'getUsers',
-       
         responses: {
           '200': {
             description: 'LIST of ALL USERS',
@@ -1139,7 +1179,7 @@ module.exports = {
                 $ref: '##/components/schemas/User'
               },
               example:{
-                "userEmail":"andela@andela.com",
+                "userEmail":"kelly@andela.com",
                 "userPassword":"Andela"
            
            }
@@ -1165,102 +1205,9 @@ module.exports = {
     ////////////////////////////////////////////////////
 
 
-    components: {
-      schemas: {
-        
-
-        Blog : {
-          type: 'object',
-          
-          properties : {
-            id: {
-              type: 'string',
-              description: 'The auto-generated id of the blog'
-            },
-            title: {
-              type: 'string',
-              description: 'The blog title'
-            },
-            body: {
-              type: 'string',
-              description: 'The body of the blog'
-            },
-            imgLink: {
-              type: 'string',
-              description: 'The Link of the Image Link'
-            },
-            
-          }
-        },
-
-        Comment: {
-          type: 'object',
-
-          properties: {
-            Comment: {
-              type: 'string',
-              description: 'Type your comment here',
-            }
-          }
-        },
-
-        Contact : {
-          type: 'object',
-          
-          properties : {
-            id: {
-              type: 'string',
-              description: 'The auto-generated id of the blog'
-            },
-            FullName: {
-              type: 'string',
-              description: 'Fullname of the sender'
-            },
-            Email: {
-              type: 'string',
-              description: 'Sender\'s email address'
-            },
-            Messages: {
-              type: 'string',
-              description: 'The message of the sender'
-            },
-            
-          }
-        },
-
-        User : {
-          type: 'object',
-          
-          properties : {
-            id: {
-              type: 'string',
-              description: 'The auto-generated id of the User'
-            },
-            UserName: {
-              type: 'string',
-              description: 'Username of the User'
-            },
-            Email: {
-              type: 'string',
-              description: 'User\'s email address'
-            },
-            Password: {
-              type: 'string',
-              description: 'The password of the user'
-            },
-            
-          }
-        },
-        
-      },
-      securitySchemes: {
-        ApiKey: {
-          type: 'apiKey',
-          in: 'header',
-          name: 'auth-token' 
         },
       }
-    }
+    },
 
  
 
@@ -1279,14 +1226,99 @@ module.exports = {
 
 
 
+    components: {
+      schemas: {
+        
 
+        Blog : {
+          type: 'object',
+          
+          properties : {
+            id: {
+              type: 'string',
+             
+            },
+            title: {
+              type: 'string',
+            
+            },
+            body: {
+              type: 'string',
+              description: 'The body of the blog'
+            },
+            imgLink: {
+              type: 'string',
+           
+            },
+            
+          }
+        },
 
+        Comment: {
+          type: 'object',
 
+          properties: {
+            Comment: {
+              type: 'string',
+            
+            }
+          }
+        },
 
+        Contact : {
+          type: 'object',
+          
+          properties : {
+            id: {
+              type: 'string',
+             
+            },
+            FullName: {
+              type: 'string',
+              
+            },
+            Email: {
+              type: 'string',
+           
+            },
+            Messages: {
+              type: 'string',
+             
+            },
+            
+          }
+        },
 
-///////////////////////////////////////////////////////////////////////////
-
-
+        User : {
+          type: 'object',
+          
+          properties : {
+            id: {
+              type: 'string',
+            
+            },
+            UserName: {
+              type: 'string',
+              
+            },
+            Email: {
+              type: 'string',
+              
+            },
+            Password: {
+              type: 'string',
+             
+            },
+            
+          }
+        },
+        
+      },
+      securitySchemes: {
+        ApiKey: {
+          type: 'apiKey',
+          in: 'header',
+          name: 'authantication' 
    
       }
 
