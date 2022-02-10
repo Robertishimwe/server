@@ -1,3 +1,6 @@
+[![build](https://github.com/Robertishimwe/server/actions/workflows/ymain.yml/badge.svg)](https://github.com/Robertishimwe/server/actions/workflows/ymain.yml)
+
+
 # MY-BRAND-API
 
 ### Developed By
