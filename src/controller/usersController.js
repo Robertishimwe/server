@@ -89,6 +89,18 @@ class UserController{
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
  static findAllUsers = async (req,res)=>{
 
     let userId = req.user.id

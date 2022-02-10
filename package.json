@@ -7,9 +7,50 @@
     "babel-core": "7.0.0-bridge.0"
   },
   "scripts": {
-    "test": "nyc --reporter=text --reporter=lcov ./node_modules/.bin/mocha --timeout 100000 --exit --require @babel/register",
-    "start": "nodemon --exec babel-node src/app.js"
+    
+    "test": "better-npm-run test",
+    "start": "nodemon --exec babel-node src/app.js",
+    "dev":"better-npm-run dev",
+    "coverage" : "nyc npm run test"
+    
   },
+
+ "betterScripts": {
+    "dev": {
+      "command": "nodemon --exec babel-node src/app.js",
+      "env": {
+        "DB_CONNECT": "mongodb+srv://robertishimwe:kigali123@cluster0.rhbhy.mongodb.net/mySecondDatabase?retryWrites=true&w=majority",
+        "PORT": 5000
+      }
+    },
+    "test": {
+      "command": "nyc --reporter=text --reporter=lcov ./node_modules/.bin/mocha --timeout 100000 --exit --require @babel/register",
+      "env": {
+        "NODE_ENV": "test",
+        "PORT": 3000
+      }
+    },
+    "prod": {
+      "command": "node ./dist/app.js",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   "nyc": {
     "include": "src",
     "exclude": "node_modules"

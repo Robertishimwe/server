@@ -20,10 +20,10 @@ describe("contact messages", () => {
 
 
 
-describe("POST /api/contact", () => {
+describe("POST /api/contact/send", () => {
     it("It Should send a message", (done) => {
     request(app)
-      .post("/api/contact") 
+      .post("/api/contact/send") 
       .send(ContactMessage)
       .end((err, res) => {
         res.should.have.status(200);
