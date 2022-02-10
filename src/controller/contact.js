@@ -1,7 +1,7 @@
 // const Message = require("../models/contact")
 // const {contactFormValidation} = require("../middleware/contactMiddleware")
 // const verify = require("../middleware/authenticator")
-// const User = require("../models/users")
+// const User = require("../models/user")
 
 import Message from "../models/contact"
 import {contactFormValidation} from "../middleware/contactMiddleware"
