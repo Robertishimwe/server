@@ -9,10 +9,9 @@
   "scripts": {
     
     "test": "better-npm-run test",
-
-
     "start": "nodemon --exec babel-node src/app.js",
-    "dev":"better-npm-run dev"
+    "dev":"better-npm-run dev",
+    "coverage" : "nyc npm run test"
     
   },
 
