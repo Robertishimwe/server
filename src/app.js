@@ -27,25 +27,6 @@ dotenv.config();
 const app = express()
 
 
-// const options = {
-//     definition: {
-//         openapi:"3.0.0",
-//         info:{
-//             title:'My Brand Api',
-//             version:"1.0.0",
-//             description:"My rand api is background engine for my portfolio website. it runs on NodeJs using MongoDB as database with Mongoose as the ORM. I am using JWT for handling authentications and JOI for Validating inputs from the user before they are sent to the server and Bcrypt for hashing passwords stored in the database."
-//         },
-//         servers:[
-//             {
-//                 url:"http://127.0.0.1:3000"
-//             }
-//         ],
-      
-//     },
-//     apis:["./routes/*.js"]
-// }
-// const specs = swaggerJsDoc(options)
-
 
 // Import Routes
 
