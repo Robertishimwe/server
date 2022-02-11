@@ -22,7 +22,7 @@ class BlogController {
     const userRole = loggedUser.userRole;
 
     if (userRole == "user")
-      return res.status(401).send({Message:"you are not alllowed to access this page"});
+      return res.status(401).send({Message:"you are not allowed to access this page"});
 
 
     const { error } = articleValidation(req.body);
