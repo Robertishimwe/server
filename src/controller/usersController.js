@@ -71,8 +71,8 @@ class UserController{
 
     
    const userRole = user.userRole;
-   if(userRole == "admin") return res.set("authantication", token).send({Message:"Logged in as admin",authantication:token})
-   if(userRole == "user") return res.set("authantication", token).send({Message:"Logged in as user",authantication:token})
+   if(userRole == "admin") return res.set("token", token).send({Message:"Logged in as admin",authantication:token})
+   if(userRole == "user") return res.set("token", token).send({Message:"Logged in as user",authantication:token})
 
         //admin validation
 
