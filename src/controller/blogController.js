@@ -30,9 +30,9 @@ class BlogController {
       res.status(400).send({Message:error.details[0].message});
     } else {
       const articles = new Article({
-        title: req.body.title.trim(),
-        articleBody: req.body.articleBody.trim(),
-        ImageLink: req.body.ImageLink.trim(),
+        title: JSON.stringify(req.body.title).trim(),
+        articleBody: JSON.stringify(req.body.articleBody).trim(),
+        ImageLink: JSON.stringify(req.body.ImageLink).trim(),
       });
       await articles.save();
       res.status(200).send(articles);

@@ -17,7 +17,7 @@ class UserController{
 
     const {error} = regiserValidation(req.body)
     if(error){
-        res.status(400).send(error.details[0].message)
+        res.status(400).send({Message:error.details[0].message})
     }
     else{
     const user = new User({
