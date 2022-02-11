@@ -112,5 +112,27 @@ class UserController{
     const user = await User.find()
     res.send(user)
  }
+
+
+
+
+ static validite = async (req,res)=>{
+
+    let userId = req.user.id
+    const loggedUser = await User.findById(userId);
+    const userRole = loggedUser.userRole;
+    if(userRole == "admin") return res.status(200).send({Admin_validite:true})
+    if(userRole == "user") return res.status(200).send({User_validite:true})
+
+
+    const user = await User.find()
+    res.send(user)
+ }
+
+
+
+
+
+
 }
 export default UserController;
