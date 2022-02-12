@@ -41,7 +41,7 @@ describe("POST /api/contact/send", () => {
     request(app)
       .get("/api/contact")
       .set({
-          'authantication': Token,
+          'token': Token,
       })  
       .end((err, res) => {
         res.should.have.status(200);
@@ -60,7 +60,7 @@ describe("POST /api/contact/send", () => {
     request(app)
       .get("/api/contact/" + id)
       .set({
-          'authantication': Token,
+          'token': Token,
       })  
       .end((err, res) => {
         res.should.have.status(200);
@@ -80,7 +80,7 @@ describe("POST /api/contact/send", () => {
     request(app)
       .get("/api/contact/" + id)
       .set({
-          'authantication': Token,
+          'token': Token,
       })  
       .end((err, res) => {
         res.should.have.status(404);
@@ -105,7 +105,7 @@ describe("POST /api/contact/send", () => {
       request(app)
         .delete("/api/contact/" + id)
         .set({
-          'authantication': Token,
+          'token': Token,
         })
         .end((err, res) => {
           res.should.have.status(204);

@@ -99,7 +99,7 @@ it("It Should not Fetch all user", (done) => {
   request(app)
     .get("/api/user")
     .set({
-        'authantication': Token,
+        'token': Token,
     })  
     .end((err, res) => {
       res.should.have.status(200);

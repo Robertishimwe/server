@@ -104,11 +104,11 @@ class BlogController {
       if (!articles) {
         res.send({ message: "Article not found" });
       } else {
-        let userId = req.user.id;
+        const userId = req.user.id;
         const loggedUser = await User.findById(userId);
         const userName = loggedUser.userName;
 
-        const newComment = { USERNAME: userName, COMMENT: req.body.comments };
+        const newComment = { userId:userId, username: userName, comment: req.body.comments };
         const oldComments = articles.Comments;
         oldComments.push(newComment);
 
@@ -131,7 +131,15 @@ class BlogController {
         let userId = req.user.id;
         let oldLike = articles.likes;
         for (let i = 0; i <= oldLike.length; i++) {
-          if (userId == oldLike[i]) return res.send({Message:"Already liked"});
+          // if (userId == oldLike[i]) return res.send({Message:"Already liked"});
+
+          if (userId == oldLike[i]){
+            const indexOfto_be_removed = oldLike.indexOf(userId);
+            const toBe_Keeped = oldLike.splice(indexOfto_be_removed,1);
+            Object.assign(articles, toBe_Keeped);
+            await articles.save();
+            return res.json(articles);
+          }
         }
 
         oldLike.push(userId);
