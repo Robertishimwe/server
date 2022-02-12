@@ -71,8 +71,8 @@ class UserController{
 
     
    const userRole = user.userRole;
-   if(userRole == "admin") return res.set("token", token).send({Message:"Logged in as admin",token:token,role:userRole})
-   if(userRole == "user") return res.set("token", token).send({Message:"Logged in as user",token:token,role:userRole})
+   if(userRole == "admin") return res.set("token", token).send({Message:"Logging in........",token:token,role:userRole})
+   if(userRole == "user") return res.set("token", token).send({Message:"Logging in........",token:token,role:userRole})
 
         //admin validation
 
@@ -131,7 +131,7 @@ class UserController{
 
 
 
- //////////////////to be deleted
+ // user profile route
 
 
 static profile = async (req,res)=>{
@@ -141,7 +141,6 @@ static profile = async (req,res)=>{
     const user = await User.findById(userId);
     if(userId == user._id ){ 
         res.status(200).send({Message:"your profile",
-        
         
         profile:{Name:user.userName,Email:user.userEmail,Role:user.userRole, joiningDate:user.CreatedDate}})
         
