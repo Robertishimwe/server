@@ -131,6 +131,35 @@ class UserController{
 
 
 
+ //////////////////to be deleted
+
+
+static profile = async (req,res)=>{
+
+    let userId = req.user.id
+
+    const user = await User.findById(userId);
+    if(userId == user._id ){ 
+        res.status(200).send({Message:"your profile",
+        
+        
+        profile:{Name:user.userName,Email:user.userEmail,Role:user.userRole, joiningDate:user.CreatedDate}})
+        
+    }else{
+        return res.status(401).send({Message:"you are not allowed to access this page"})
+    }
+ }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

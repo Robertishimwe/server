@@ -11,6 +11,8 @@ router.post("/user/register", UserController.createUser)
 router.get("/user",verify,UserController.findAllUsers)
 router.post("/user/login",UserController.login)
 router.get("/user/validite",verify,UserController.validite)
+router.get("/user/profile",verify,UserController.profile)
+
 
 
 
