@@ -61,7 +61,7 @@ describe("BLOG CRUD OPERATIONS ", () => {
     request(app)
       .post("/api/articles/create")
       .set({
-          'authantication': Token,
+          'token': Token,
       })  
       .send(testPost)
       .end((err, res) => {
@@ -80,7 +80,7 @@ it("should be blocked from posting", (done) => {
   request(app)
     .post("/api/articles/create")
     .set({
-        'authantication': Token,
+        'token': Token,
     })  
     .send(testPost)
     .end((err, res) => {

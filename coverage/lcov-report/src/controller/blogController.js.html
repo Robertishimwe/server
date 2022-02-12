@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">28.07% </span>
+                <span class="strong">26.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>16/57</span>
+                <span class='fraction'>16/60</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25.75% </span>
+                <span class="strong">25.37% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>17/66</span>
+                <span class='fraction'>17/67</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">28.57% </span>
+                <span class="strong">27.11% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>16/56</span>
+                <span class='fraction'>16/59</span>
             </div>
         
             
@@ -210,7 +210,15 @@
 <a name='L145'></a><a href='#L145'>145</a>
 <a name='L146'></a><a href='#L146'>146</a>
 <a name='L147'></a><a href='#L147'>147</a>
-<a name='L148'></a><a href='#L148'>148</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L148'></a><a href='#L148'>148</a>
+<a name='L149'></a><a href='#L149'>149</a>
+<a name='L150'></a><a href='#L150'>150</a>
+<a name='L151'></a><a href='#L151'>151</a>
+<a name='L152'></a><a href='#L152'>152</a>
+<a name='L153'></a><a href='#L153'>153</a>
+<a name='L154'></a><a href='#L154'>154</a>
+<a name='L155'></a><a href='#L155'>155</a>
+<a name='L156'></a><a href='#L156'>156</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -348,6 +356,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -463,11 +479,11 @@ class BlogController {
       if (!articles) {
 <span class="cstat-no" title="statement not covered" >        res.</span>send({ message: "Article not found" });
       } else {
-        let <span class="cstat-no" title="statement not covered" >userId = req.user.id;</span>
+        const <span class="cstat-no" title="statement not covered" >userId = req.user.id;</span>
         const <span class="cstat-no" title="statement not covered" >loggedUser = await User.findById(userId);</span>
         const <span class="cstat-no" title="statement not covered" >userName = loggedUser.userName;</span>
 &nbsp;
-        const <span class="cstat-no" title="statement not covered" >newComment = { USERNAME: userName, COMMENT: req.body.comments };</span>
+        const <span class="cstat-no" title="statement not covered" >newComment = { userId:userId, username: userName, comment: req.body.comments };</span>
         const <span class="cstat-no" title="statement not covered" >oldComments = articles.Comments;</span>
 <span class="cstat-no" title="statement not covered" >        oldComments.</span>push(newComment);
 &nbsp;
@@ -490,7 +506,15 @@ class BlogController {
         let <span class="cstat-no" title="statement not covered" >userId = req.user.id;</span>
         let <span class="cstat-no" title="statement not covered" >oldLike = articles.likes;</span>
         for (let <span class="cstat-no" title="statement not covered" >i = 0; i &lt;= oldLike.length; <span class="cstat-no" title="statement not covered" >i++) {</span></span>
-          if (userId == oldLike[i]) return res.send({Message:"Already liked"});
+          // if (userId == oldLike[i]) return res.send({Message:"Already liked"});
+&nbsp;
+          if (userId == oldLike[i]){
+            const <span class="cstat-no" title="statement not covered" >indexOfto_be_removed = oldLike.indexOf(userId);</span>
+            const <span class="cstat-no" title="statement not covered" >toBe_Keeped = oldLike.splice(indexOfto_be_removed,1);</span>
+<span class="cstat-no" title="statement not covered" >            Object.</span>assign(articles, toBe_Keeped);
+            await articles.save();
+            return res.json(articles);
+          }
         }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >        oldLike.</span>push(userId);
@@ -511,7 +535,7 @@ export default BlogController;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Fri Feb 11 2022 08:41:26 GMT+0200 (South Africa Standard Time)
+                at Sat Feb 12 2022 18:14:34 GMT+0200 (South Africa Standard Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>
