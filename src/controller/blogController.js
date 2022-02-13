@@ -138,7 +138,7 @@ class BlogController {
             const toBe_Keeped = oldLike.splice(indexOfto_be_removed,1);
             Object.assign(articles, toBe_Keeped);
             await articles.save();
-            return res.json(articles);
+            return res.status(200).json(articles);
           }
         }
 
