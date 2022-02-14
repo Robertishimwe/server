@@ -121,8 +121,9 @@ class UserController{
     let userId = req.user.id
     const loggedUser = await User.findById(userId);
     const userRole = loggedUser.userRole;
+    
     if(userRole == "admin") return res.status(200).send({Admin_validite:true})
-    if(userRole == "user") return res.status(200).send({User_validite:true})
+    if(userRole == "user") return res.status(200).send({User_validite:true,Loggedname:loggedUser.userName})
 
 
     const user = await User.find()
