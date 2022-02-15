@@ -57,7 +57,7 @@ class BlogController {
     let userId = req.user.id;
     const loggedUser = await User.findOne({userId:userId});
     const userRole = loggedUser.userRole;
-    if (userRole == "user")
+    if (userRole == "admin")
       return res.status(401).send({Message:"you are not allowed to access this page"});
 
     const articles = await Article.findById(req.params.id);
