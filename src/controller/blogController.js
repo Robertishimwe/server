@@ -27,7 +27,7 @@ class BlogController {
   static createArticle = async (req, res) => {
     //verify if users is admin
     if (!req.user.id)
-    return res.status(400).send({Message:"No user with such credentiols"});
+    return res.status(400).send({Message:"No user with such credentiolss"});
     let userId = req.user.id;
     const loggedUser = await User.findById(userId);
     const userRole = loggedUser.userRole;

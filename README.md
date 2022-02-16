@@ -1,5 +1,6 @@
 [![build](https://github.com/Robertishimwe/server/actions/workflows/ymain.yml/badge.svg)](https://github.com/Robertishimwe/server/actions/workflows/ymain.yml)
-
+[![Test Coverage](https://api.codeclimate.com/v1/badges/dd7eaa156386a05a0b07/test_coverage)](https://codeclimate.com/github/Robertishimwe/server/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/dd7eaa156386a05a0b07/maintainability)](https://codeclimate.com/github/Robertishimwe/server/maintainability)
 
 # MY-BRAND-API
 

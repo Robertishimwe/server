@@ -2,4 +2,8 @@ node_modules
 coverage
 .vscode
 .nyc_output
+<<<<<<< HEAD
 .env
+=======
+.env
+>>>>>>> fb9ad9dcc997ef8c5a3bf6071062d4e47c940847
