@@ -5,11 +5,22 @@
 import Article from "../models/blog";
 import { articleValidation } from "../middleware/blogValidation";
 import User from "../models/users";
+import cloudinary from "cloudinary"
+import dotenv from 'dotenv';
+dotenv.config();
 
 
 
+// cloudinary.uploader
+// .upload("../me/me.png",{
 
+//    resource_type:"image",
+// })
+// .then((result)=>{
+//   console.log(JSON.stringify(result,null,2))
+// }) 
 
+console.log("hello word")
 
 // Create article
 class BlogController {
@@ -57,7 +68,7 @@ class BlogController {
     let userId = req.user.id;
     const loggedUser = await User.findOne({userId:userId});
     const userRole = loggedUser.userRole;
-    if (userRole == "user")
+    if (userRole == "admin")
       return res.status(401).send({Message:"you are not allowed to access this page"});
 
     const articles = await Article.findById(req.params.id);
