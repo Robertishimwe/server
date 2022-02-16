@@ -1,8 +1,13 @@
 name: CI
 env:
+<<<<<<< HEAD
+  DB_CONNECT: mongodb+srv://robertishimwe:kigali123@cluster0.rhbhy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+  TOKEN_SECRET: DGUIHUIHGIGDURHROBERTDIURDUIRUIHIDUHRIUH
+=======
   DB_CONNECT: ${{ secrets.DB_CONNECT }}
   TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
   CI: true
+>>>>>>> fb9ad9dcc997ef8c5a3bf6071062d4e47c940847
 
 # Controls when the workflow will run
 on:

@@ -15,12 +15,13 @@ import swaggerJsDoc from 'swagger-jsdoc';
 import cors from 'cors';
 
 
- const corsOptions = {
-     origin: '*',
-     optionsSuccessStatus: 200 
- }
-//const corsOptions = { origin: '*', optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
-//} 
+//  const corsOptions = {
+//      origin: '*',
+//      optionsSuccessStatus: 200 
+//  }
+const corsOptions = { origin: '*', optionsSucessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
+} 
+
 
 
   
