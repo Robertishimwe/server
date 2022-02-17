@@ -7,9 +7,12 @@ import { articleValidation } from "../middleware/blogValidation";
 import User from "../models/users";
 import cloudinary from "cloudinary"
 import dotenv from 'dotenv';
+import express from "express";
+const app = express()
 dotenv.config();
 app.use(express.json({limit: '80mb'}));
 app.use(express.urlencoded({limit: '80mb'}));
+
 
 
 // cloudinary.uploader
