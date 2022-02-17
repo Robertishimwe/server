@@ -8,7 +8,8 @@ import User from "../models/users";
 import cloudinary from "cloudinary"
 import dotenv from 'dotenv';
 dotenv.config();
-
+app.use(express.json({limit: '80mb'}));
+app.use(express.urlencoded({limit: '80mb'}));
 
 
 // cloudinary.uploader
