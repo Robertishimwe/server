@@ -45,6 +45,8 @@ const corsOptions = { origin: '*', optionsSucessStatus: 200 // some legacy brows
 
 dotenv.config();
 const app = express()
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 
 
