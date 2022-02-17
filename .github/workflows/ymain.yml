@@ -1,13 +1,8 @@
 name: CI
 env:
-<<<<<<< HEAD
-  DB_CONNECT: mongodb+srv://robertishimwe:kigali123@cluster0.rhbhy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
-  TOKEN_SECRET: DGUIHUIHGIGDURHROBERTDIURDUIRUIHIDUHRIUH
-=======
   DB_CONNECT: ${{ secrets.DB_CONNECT }}
   TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
   CI: true
->>>>>>> fb9ad9dcc997ef8c5a3bf6071062d4e47c940847
 
 # Controls when the workflow will run
 on:
@@ -39,5 +34,3 @@ jobs:
         with:
           codeclimate-test-reporter-id: 22051e07c57c969f74159166e072e506d1aa5df8dcc83e1f53834ac302720b6a
           command: after-build
-    
-    
