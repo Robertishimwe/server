@@ -15,10 +15,10 @@ import swaggerJsDoc from 'swagger-jsdoc';
 import cors from 'cors';
 
 
-//  const corsOptions = {
-//      origin: '*',
-//      optionsSuccessStatus: 200 
-//  }
+ const corsOptions = {
+     origin: '*',
+     optionsSuccessStatus: 200 
+ }
 // const corsOptions = { origin: '*', optionsSucessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
 // } 
 
@@ -28,16 +28,16 @@ import cors from 'cors';
 
 
 
-const whitelist = ['https://robertishimwe.github.io/integration', 'http://developer2.com']
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error())
-    }
-  }
-}
+// const whitelist = ['https://robertishimwe.github.io/integration', 'http://developer2.com']
+// const corsOptions = {
+//   origin: (origin, callback) => {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true)
+//     } else {
+//       callback(new Error())
+//     }
+//   }
+// }
 
 
 
