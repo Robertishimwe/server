@@ -22,6 +22,9 @@ import cors from 'cors';
 const corsOptions = { origin: '*', optionsSucessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
 } 
 
+app.use(cors({
+    origin: '*'
+}));
 
 
   
